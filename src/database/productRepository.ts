@@ -16,8 +16,8 @@ export class ProductRepository {
     }
 
     public async createProduct() {
-        const lastName = this.product.name;
-        const descricao = this.product.description;
+        const name = this.product.name;
+        const description = this.product.description;
         const id = Math.floor(Math.random() * 1000) + 1; // Gerar um ID aleatório entre 1 e 1000
 
         const query = `
@@ -25,7 +25,7 @@ export class ProductRepository {
       VALUES ($1, $2, $3)
       RETURNING id, name, description
     `;
-        const values = [id, lastName, descricao];
+        const values = [id, name, description];
 
         // faz a query
         const result = await pool.query<Product>(query, values);
